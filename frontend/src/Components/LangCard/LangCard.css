@@ -1,0 +1,25 @@
+.prog_lang {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 200px;
+  flex-direction: row-reverse;
+  margin: 8px;
+  padding: 20px 10px;
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  border-radius: 5px;
+}
+.prog_lang:hover {
+ transform: scale(1.05);
+}
+
+.prog_lang h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  direction: ltr;
+}
+
+.prog_lang img {
+  width: 40px;
+}

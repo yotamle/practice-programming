@@ -1,0 +1,83 @@
+.lang-option {
+  text-align: center;
+  margin: 0 10px;
+}
+
+.languages h2 {
+  margin: 20px 0 6px 0;
+}
+
+.languages-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: auto;
+  padding-bottom: 30px;
+}
+
+.lang-exercise h2 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.exercise-filter {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: 10px auto;
+}
+
+.exer-filter {
+  width: 200px;
+  padding: 8px 5px;
+  border-radius: 5px;
+  margin: 10px 0;
+  background-color: #00cc66;
+}
+
+.exer-filter select {
+  width: 60%;
+  padding: 3px 10px;
+  cursor: pointer;
+}
+
+.exer-filter label {
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-right: 5px;
+}
+.exercise-search {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px 0;
+  border-radius: 5px;
+  background-color: #00cc66;
+  padding: 8px 5px;
+}
+.exercise-search input {
+  width: 80%;
+  padding: 3px 0px;
+}
+
+.all-exercises{ 
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: auto;
+}
+
+.all-exercises * {
+  text-decoration: none;
+  color: black;
+}
+
+/* .loader {
+  margin: 200px 500px;
+} */

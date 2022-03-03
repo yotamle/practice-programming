@@ -1,0 +1,28 @@
+.exercise-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 60px 20px 0;
+}
+
+.exercise {
+  width: 500px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  padding: 20px;
+}
+
+.exercise div {
+    margin: 5px 0;
+}
+
+.ex-content {
+    border: 1px solid black;
+    padding: 12px;
+    line-height: 1.7;
+}

@@ -1,0 +1,37 @@
+.admin-flex {
+  display: flex;
+  height: 100vh;
+}
+
+.admin-navigate {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:flex-start;
+}
+
+.admin-btn {
+  border: none;
+  background-color: transparent;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0 50px 10px 0;
+
+}
+.admin-btn:hover {
+  color: #00cc66;
+}
+
+.admin-details {
+  width: 100%;
+  background-color: rgb(201, 201, 201);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.admin-details h3 {
+  font-size: 5rem;
+}

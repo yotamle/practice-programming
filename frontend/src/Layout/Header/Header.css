@@ -1,0 +1,25 @@
+.header {
+    text-align: center;
+    width: 100%;
+    padding: 20px 0;
+}
+
+.header-flex {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+.header-flex .btn {
+    margin: 0 10px;
+}
+
+.btn {
+    border: none;
+    background-color:transparent;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn:hover {
+    color: #00cc66;
+}
