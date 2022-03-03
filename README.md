@@ -1,6 +1,6 @@
 # practice-programming
 
-App where can you practice programming languages, can see the solution, and share with other people.
+App where can you practice programming languages, see the solution, and share with other people.
 ___________________________________________________
 front-end: react, html, css
 ___________________________________________________
