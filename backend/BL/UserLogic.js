@@ -1,10 +1,8 @@
 const UserController = require("../DL/controllers/UserController")
-const bcryptjs = require("bcryptjs")
-const jwt = require("jsonwebtoken")
+const bcrypt = require("bcryptjs")
 
 async function create(data) {
   if (!data.email?.includes("@")) throw "you forgot to put @"
-
   return await UserController.create(data)
 }
 
@@ -14,34 +12,28 @@ async function update(data) {
 }
 
 async function register(data) {
-  //  if (!data.firstName || !data.lastName)
-  //    throw "first and last name are required!"
-  //  data.name = `${data.firstName} ${data.lastName}`
-
-  data.password = bcryptjs.hashSync(data.password)
-
+  //Validation
+  const userExists = await UserController.findOne({ email: data.email})
+   if (userExists) {
+     throw "אימייל זה קיים במערכת"
+   }
+  if (!data.name || !data.email || !data.password) {
+    throw "Please include all fields"
+  }
+  // Hash password
+  data.password = bcrypt.hashSync(data.password)
   return await create(data)
 }
 
 async function login(email, password) {
+  //Validation
   const user = (await UserController.read({ email }, "+password"))[0]
-  
-  
-  
-  if (!user) throw "email or password invalid"
+  if (!user) throw "שם משתמש או סיסמה שגויה"
   //throw 'No such user'
-  
-  if (!bcryptjs.compareSync(password, user.password))
-  throw "email or password invalid"
-  
-  const token = jwt.sign({
-    id: user._id,
-  },"YotamLevy",{ expiresIn:"1H"})
+  if (!bcrypt.compareSync(password, user.password))
+    throw "שם משתמש או סיסמה שגויה"
 
-  user.token = token
-  update(user)
-  const userToken = (await UserController.read({ email }, "+token"))[0]
-  return userToken
+  return update(user)
 }
 
 module.exports = {

@@ -6,20 +6,22 @@
 
 .header-flex {
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
 }
+
 .header-flex .btn {
     margin: 0 10px;
 }
 
 .btn {
     border: none;
-    background-color:transparent;
+    background-color: transparent;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
 }
+
 .btn:hover {
     color: #00cc66;
 }

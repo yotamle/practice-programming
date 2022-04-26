@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ["user", "editor", "admin"],
     default: "user",
-    required:true,
+    required: true,
   },
   lastSeen: {
     type: Date,
@@ -30,10 +30,6 @@ const userSchema = new mongoose.Schema({
   },
   profile_pic: {
     type: String,
-  },
-  token: {
-    type: String,
-    select: false,
   },
 })
 

@@ -2,6 +2,12 @@ const UserLogic = require("./BL/UserLogic")
 const ExerciseLogic = require("./BL/ExerciseLogic")
 const LangLogic = require("./BL/LangLogic")
 const GeneraLogic = require("./BL/GeneralLogic")
+const jwt = require("jsonwebtoken")
+
+// Generate token
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "2H" })
+}
 
 module.exports = (app) => {
   //*read - user
@@ -20,13 +26,22 @@ module.exports = (app) => {
     let result
     try {
       result = await UserLogic.login(email, password)
+      res.status(200).json({
+        id: result._id,
+        name: result.name,
+        email: result.email,
+        permission: result.permission,
+        lastSeen: result.lastSeen,
+        profile_pic: result.profile_pic,
+        token: generateToken(result._id),
+      })
     } catch (error) {
       result = {
         status: 400,
         message: error.message || error,
       }
+      res.send(result)
     }
-    res.send(result)
   })
 
   //*Register V
@@ -34,24 +49,33 @@ module.exports = (app) => {
     let result
     try {
       result = await UserLogic.register(req.body)
+       res.status(200).json({
+         id: result._id,
+         name: result.name,
+         email: result.email,
+         permission: result.permission,
+         lastSeen: result.lastSeen,
+         profile_pic: result.profile_pic,
+         token: generateToken(result._id),
+       })
     } catch (error) {
       result = {
         status: 400,
         message: error.message || error,
       }
+      res.send(result)
     }
-    res.send(result)
   })
 
-  //*Create Exercise
+  //! Create Exercise
   app.post("/new-exercise", async (req, res) => {
     try {
       let result = await ExerciseLogic.create(req.body)
       res.send(result)
-    } catch (err) {
+    } catch (error) {
       res.send({
         status: 400,
-        message: err.message || err,
+        message: error.message || error,
       })
     }
   })
@@ -89,7 +113,7 @@ module.exports = (app) => {
     res.send(result)
   })
 
-  //*update Exercise
+  //!update Exercise
   app.put("/update-exercise/:id", async (req, res) => {
     const { id } = req.params
     let result
@@ -104,7 +128,7 @@ module.exports = (app) => {
     }
   })
 
-  //*delete Exercise
+  //?delete Exercise cant remove only update to delete
   app.put("/remove-exercise/:id", async (req, res) => {
     const { id } = req.params
     let result

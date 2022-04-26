@@ -9,6 +9,10 @@ async function read(filter = {}, projection) {
   return await UserModel.find(filter, projection)
 }
 
+async function findOne(filter) {
+  return await UserModel.findOne(filter)
+}
+
 async function update(_id, data) {
   return await UserModel.findByIdAndUpdate(_id, data, {
     new: true,
@@ -16,4 +20,5 @@ async function update(_id, data) {
   })
 }
 
-module.exports = { create, read, update }
+
+module.exports = { create, read, update, findOne }

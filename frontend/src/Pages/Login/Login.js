@@ -1,11 +1,45 @@
 import "./Login.css"
 import { useNavigate } from "react-router-dom"
+import { useState, useContext } from "react"
+import axios from "axios"
+import { toast } from "react-toastify"
+import { UserContext } from "../../App"
+
 
 function Login() {
+  const { setUserLogin } = useContext(UserContext)
+
   const navigate = useNavigate()
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  })
+  const { email, password } = formData
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    loginUser(formData)
+  }
+
+  const loginUser = (user) => {
+    axios
+      .post("http://localhost:3000/login", user)
+      .then((result) => {
+        if (result.data.message) {
+          toast.error(result.data.message)
+        }
+        else {
+          setUserLogin(result.data)
+          localStorage.setItem("token",result.data.token)
+          navigate("/")
+        }
+      })
   }
 
   function goToSignUp() {
@@ -21,8 +55,12 @@ function Login() {
             <input
               className="login-input"
               type="text"
-              placeholder="דואר אלקטרוני"
+              id="email"
               name="email"
+              value={email}
+              placeholder="דואר אלקטרוני"
+              onChange={handleChange}
+              required
             />
           </div>
           <div>
@@ -31,6 +69,10 @@ function Login() {
               type="password"
               placeholder="סיסמא"
               name="password"
+              id="password"
+              value={password}
+              onChange={handleChange}
+              required
             />
           </div>
           <input type="submit" value="התחבר" className="btn-login"></input>
